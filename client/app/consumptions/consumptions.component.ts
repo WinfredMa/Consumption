@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
 import { ConsumptionService } from '../services/consumption.service';
 import { ToastComponent } from '../shared/toast/toast.component';
 import { Consumption } from '../shared/models/consumption.model';
+
 import * as d3 from 'd3';
 
 @Component({
@@ -17,7 +17,12 @@ export class ConsumptionsComponent implements OnInit {
   consumptions: Consumption[] = [];
   isLoading = true;
   isEditing = false;
-
+  settings = {
+      bigBanner: true,
+      timePicker: true,
+      format: 'dd-MMM-yyyy hh:mm a',
+      defaultOpen: false
+  }
   addConsumptionForm: FormGroup;
   name = new FormControl('', Validators.required);
   type = new FormControl('', Validators.required);
@@ -25,7 +30,7 @@ export class ConsumptionsComponent implements OnInit {
   value = new FormControl('', Validators.required);
   source = new FormControl('', Validators.required);
   remark = new FormControl('');
-
+  date = new FormControl(new Date(), Validators.required);
   constructor(private consumptionService: ConsumptionService,
     private formBuilder: FormBuilder,
     public toast: ToastComponent) { }
@@ -38,7 +43,8 @@ export class ConsumptionsComponent implements OnInit {
       category: this.category,
       value: this.value,
       source: this.source,
-      remark: this.remark
+      remark: this.remark,
+      date: this.date
     });
     this.showline();
 

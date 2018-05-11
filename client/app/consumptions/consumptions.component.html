@@ -85,6 +85,10 @@
         <input class="form-control mr-2" type="text" name="remark" formControlName="remark" placeholder="Remark">
       </div>
       <div>
+        <label>Date</label>
+        <angular2-date-picker name="date" formControlName="date" [settings]="settings"></angular2-date-picker>
+      </div>
+      <div>
         <button class="btn btn-primary" type="submit" [disabled]="!addConsumptionForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
       </div>
     </form>
