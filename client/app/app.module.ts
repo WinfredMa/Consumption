@@ -20,7 +20,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { AccountComponent } from './account/account.component';
 import { AdminComponent } from './admin/admin.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { AngularDateTimePickerModule } from 'angular2-datetimepicker';
+import { NguiDatetimePickerModule } from '@ngui/datetime-picker';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -42,7 +42,7 @@ export function tokenGetter() {
   imports: [
     RoutingModule,
     SharedModule,
-    AngularDateTimePickerModule,
+    NguiDatetimePickerModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

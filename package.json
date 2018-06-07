@@ -34,7 +34,7 @@
     "@angular/platform-browser-dynamic": "^5.2.10",
     "@angular/router": "^5.2.10",
     "@auth0/angular-jwt": "~1.1.0",
-    "angular2-datetimepicker": "^1.1.1",
+    "@ngui/datetime-picker": "^0.16.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "bootstrap": "^4.1.1",

@@ -17,12 +17,6 @@ export class ConsumptionsComponent implements OnInit {
   consumptions: Consumption[] = [];
   isLoading = true;
   isEditing = false;
-  settings = {
-      bigBanner: true,
-      timePicker: true,
-      format: 'dd-MMM-yyyy hh:mm a',
-      defaultOpen: false
-  }
   addConsumptionForm: FormGroup;
   name = new FormControl('', Validators.required);
   type = new FormControl('', Validators.required);
@@ -30,7 +24,7 @@ export class ConsumptionsComponent implements OnInit {
   value = new FormControl('', Validators.required);
   source = new FormControl('', Validators.required);
   remark = new FormControl('');
-  date = new FormControl(new Date(), Validators.required);
+  date = new FormControl('', Validators.required);
   constructor(private consumptionService: ConsumptionService,
     private formBuilder: FormBuilder,
     public toast: ToastComponent) { }

@@ -14,13 +14,14 @@
           <th scope="col">Value</th>
           <th scope="col">Source</th>
           <th scope="col">Remark</th>
+          <th scope="col">Date</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody *ngIf="consumptions.length === 0">
         <tr>
           <td colspan="4">There are no consumption in the DB. Add a new cat below.</td>
-        </tr>  
+        </tr>
       </tbody>
       <tbody *ngIf="!isEditing">
         <tr *ngFor="let consumption of consumptions">
@@ -30,15 +31,18 @@
           <td>{{consumption.value}}</td>
           <td>{{consumption.source}}</td>
           <td>{{consumption.remark}}</td>
+          <td>{{consumption.date}}</td>
           <td>
-            <button class="btn btn-sm btn-primary" (click)="enableEditing(consumption)"><i class="fa fa-pencil"></i> Edit</button> 
-            <button class="btn btn-sm btn-danger" (click)="deleteConsumption(consumption)"><i class="fa fa-trash"></i> Delete</button>
+            <button class="btn btn-sm btn-primary" (click)="enableEditing(consumption)">
+              <i class="fa fa-pencil"></i> Edit</button>
+            <button class="btn btn-sm btn-danger" (click)="deleteConsumption(consumption)">
+              <i class="fa fa-trash"></i> Delete</button>
           </td>
-        </tr>  
+        </tr>
       </tbody>
       <tbody *ngIf="isEditing">
         <tr>
-          <td colspan="7">
+          <td colspan="8">
             <form class="form-inline" #form="ngForm" (ngSubmit)="editConsumption(consumption)">
               <input class="form-control mr-2" type="text" name="name" [(ngModel)]="consumption.name" placeholder="Name" required>
               <input class="form-control mr-2" type="text" name="type" [(ngModel)]="consumption.type" placeholder="Type" required>
@@ -46,8 +50,11 @@
               <input class="form-control mr-2" type="number" name="value" [(ngModel)]="consumption.value" placeholder="Value" min="0" required>
               <input class="form-control mr-2" type="text" name="source" [(ngModel)]="consumption.source" placeholder="Source" required>
               <input class="form-control mr-2" type="text" name="remark" [(ngModel)]="consumption.remark" placeholder="Remark">
-              <button class="btn btn-sm btn-primary mr-2" type="submit" [disabled]="!form.form.valid"><i class="fa fa-floppy-o"></i> Save</button>
-              <button class="btn btn-sm btn-warning" (click)="cancelEditing()"><i class="fa fa-times"></i> Cancel</button>
+              <input class="form-control mr-2" name="date" [(ngModel)]="consumption.date" placeholder="Date" ngui-datetime-picker />
+              <button class="btn btn-sm btn-primary mr-2" type="submit" [disabled]="!form.form.valid">
+                <i class="fa fa-floppy-o"></i> Save</button>
+              <button class="btn btn-sm btn-warning" (click)="cancelEditing()">
+                <i class="fa fa-times"></i> Cancel</button>
             </form>
           </td>
         </tr>
@@ -86,10 +93,11 @@
       </div>
       <div>
         <label>Date</label>
-        <angular2-date-picker name="date" formControlName="date" [settings]="settings"></angular2-date-picker>
+        <input class="form-control mr-2" name="date" formControlName="date" placeholder="Date" ngui-datetime-picker />
       </div>
       <div>
-        <button class="btn btn-primary" type="submit" [disabled]="!addConsumptionForm.valid"><i class="fa fa-floppy-o"></i> Add</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!addConsumptionForm.valid">
+          <i class="fa fa-floppy-o"></i> Add</button>
       </div>
     </form>
   </div>
